@@ -1,0 +1,84 @@
+﻿@model LaundryShopMVC.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+    </dl>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>OrderDate</th>
+            <th>Type</th>
+            <th>ProductName</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.invoices.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.invoices[i].OrderDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.invoices[i].OrderDate, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.invoices[i].LaundryType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.invoices[i].LaundryType, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.invoices[i].ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.invoices[i].ItemName, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.invoices[i].Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.invoices[i].Price, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.invoices[i].Qty, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.invoices[i].Qty, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
